@@ -1,0 +1,170 @@
+# =============================================================================
+# MkDocs Configuration for JoininBox Menu Guide
+# =============================================================================
+#
+# This configuration file defines how the documentation is built and rendered.
+# It uses the Material theme and includes support for:
+# - Diagrams via Mermaid and draw.io: https://github.com/jgraph/drawio
+# - Syntax highlighting and code blocks
+#
+# For more information, see:
+# - MkDocs: https://www.mkdocs.org/
+# - Material theme: https://squidfunk.github.io/mkdocs-material/
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Site Metadata
+# -----------------------------------------------------------------------------
+
+# Site name displayed in the browser tab and page header
+site_name: JoininBox Menu Guide
+
+# GitHub repository link displayed in the header for easy access to source code
+repo_url: https://github.com/openoms/joininbox
+repo_name: GitHub
+
+# Footer copyright with link to license page
+# This appears at the bottom of every page
+copyright: <a href="license">MIT License</a> © 2026 JoininBox contributors
+
+# -----------------------------------------------------------------------------
+# Pages not in navigation
+# -----------------------------------------------------------------------------
+# These pages exist in docs/ but are not included in the nav configuration.
+# This suppresses the INFO warning during build.
+not_in_nav: |
+  license.md
+
+# -----------------------------------------------------------------------------
+# Theme Configuration
+# -----------------------------------------------------------------------------
+
+theme:
+  # Use the Material theme - a modern, responsive documentation theme
+  # Requires: pip install mkdocs-material
+  name: material
+
+  # Logo displayed in the header and navigation
+  logo: media/logo.svg
+
+  # Theme features enabled for this documentation
+  features:
+    # Add a "copy" button to code blocks for easy copying
+    - content.code.copy
+    # Enable section index pages - shows an overview page for each section
+    - navigation.indexes
+    # Tooltips
+    - content.tooltips
+
+  # Color scheme configuration
+  palette:
+    # Use custom primary color defined in docs/stylesheets/extra.css
+    # This allows branding consistency with JoinMarket colors
+    primary: custom
+    # Use custom accent color defined in docs/stylesheets/extra.css
+    accent: custom
+
+# -----------------------------------------------------------------------------
+# Plugins
+# -----------------------------------------------------------------------------
+
+plugins:
+  # Built-in search plugin - enables full-text search across all documentation
+  - search
+  # List of glob patterns for pages to exclude from search
+  # Patterns are relative to the docs/ directory
+  # All excluded pages remain accessible via the navigation menu
+  - exclude-search:
+      exclude:
+        - scripts/*
+
+  # mkdocs-literate-nav - Define navigation structure via SUMMARY.md files
+  # The gen_ref_pages.py script writes api/SUMMARY.md which literate-nav
+  # uses to build the API Reference navigation tree automatically.
+  #
+  # For more information, see: https://oprypin.github.io/mkdocs-literate-nav/
+  - literate-nav:
+      nav_file: SUMMARY.md
+
+# -----------------------------------------------------------------------------
+# Markdown Extensions
+# -----------------------------------------------------------------------------
+# These extensions extend Markdown syntax with additional features.
+# They are processed by Python-Markdown during the build process.
+# -----------------------------------------------------------------------------
+
+markdown_extensions:
+
+  # Enable attribute lists on elements
+  # Allows syntax like: ![alt](image.png){ .class #id align=left }
+  - attr_list
+
+  # Enable Markdown processing inside HTML blocks
+  # Required for: <figure markdown="span">![alt](image.png)<figcaption>Caption</figcaption></figure>
+  - md_in_html
+
+  # Syntax highlighting for code blocks
+  # Supports many languages with automatic language detection
+  - pymdownx.highlight
+
+  # Enable ==highlighted text== syntax for highlighting important content
+  - pymdownx.mark
+
+  # Enhanced fenced code blocks with support for:
+  # - Nested code blocks
+  # - Custom fences for diagrams (Mermaid)
+  # - Better code block handling
+  - pymdownx.superfences:
+      custom_fences:
+        # Mermaid diagram support - renders flowcharts, sequence diagrams, etc.
+        # Diagrams are rendered client-side by the Mermaid JavaScript library
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  # Inline code syntax highlighting - enables `code:language` syntax
+  - pymdownx.inlinehilite
+
+# -----------------------------------------------------------------------------
+# Custom CSS
+# -----------------------------------------------------------------------------
+
+extra_css:
+  # Custom stylesheet for additional styling
+  # Includes:
+  # - Custom theme colors (primary, accent)
+  # - Navigation separator styling
+  # - Math formula display styling (if needed)
+  - stylesheets/extra.css
+
+# -----------------------------------------------------------------------------
+# Navigation Menu Structure
+# -----------------------------------------------------------------------------
+# This defines the structure of the documentation navigation menu.
+# Each entry is a page or section with its corresponding Markdown file.
+# -----------------------------------------------------------------------------
+
+nav:
+  # -------------------------------------------------------------------------
+  # Main Pages
+  # -------------------------------------------------------------------------
+  #- Home: index.md
+  #- Installation: joininbox/joininbox-installation.md
+  # -------------------------------------------------------------------------
+  # Visual Separator
+  # -------------------------------------------------------------------------
+  # This creates a horizontal line separator in the navigation menu
+  # The actual styling is defined in docs/stylesheets/extra.css
+  - '---': separator.md
+  - 👉 Clickable Menu Walkthrough: joininbox/joininbox-menu-docu.md
+  # -------------------------------------------------------------------------
+  # External Links
+  # -------------------------------------------------------------------------
+  # Link to external resources - opens in new tab
+  #- '---': separator.md
+  #- Public Order Books:
+  #    - Nixbitcoin Orderbook: https://nixbitcoin.org/obwatcher/
+  #    - JoinMarket NG Orderbook: https://joinmarket-ng.sgn.space/
+  #- '---': separator.md   
+  #- FAQ: joininbox/joininbox-faq.md          
+

@@ -1,0 +1,235 @@
+/*
+ * Workaround: MkDocs Material does not have native separator support.
+ * Creates a horizontal line separator in the navigation.
+ */
+
+.md-nav__link[href*="separator"] {
+    pointer-events: none !important;
+    cursor: default !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    display: block !important;
+    border-top: 1px solid var(--md-default-fg-color--lightest) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.md-nav__link[href*="separator"]:hover {
+    background-color: transparent !important;
+}
+
+.md-nav__item:has(.md-nav__link[href*="separator"]) {
+    margin-top: 0.6em !important;
+    margin-bottom: 0.6em !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/*
+ * Bitcoin Orange Theme (#FF8000)
+ */
+
+:root {
+    --md-primary-fg-color: #FF8000;
+    --md-primary-fg-color--light: #FF9933;
+    --md-primary-fg-color--dark: #CC6600;
+    --md-accent-fg-color: #FF8000;
+    --md-accent-fg-color--transparent: rgba(255, 128, 0, 0.1);
+    --md-typeset-a-color: #FF8000;
+}
+
+.md-header {
+    background-color: #FF8000;
+}
+
+.md-typeset a:hover {
+    color: #CC6600;
+}
+
+.md-nav__link--active {
+    color: #FF8000;
+}
+
+.md-nav__link:hover {
+    color: #FF8000;
+}
+
+.md-tabs__link--active {
+    border-bottom-color: #FF8000;
+}
+
+mark,
+.md-typeset mark {
+    background-color: rgba(255, 128, 0, 0.5);
+    color: inherit;
+}
+
+.md-nav__link[href^="http"]::after {
+    content: " ↗";
+    font-size: 0.8em;
+}
+
+.md-typeset a[href^="http"]::after {
+    content: " ↗";
+    font-size: 0.8em;
+}
+
+/*
+ * JetBrains Mono Font - hosted locally for consistent ASCII-art rendering
+ */
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/jetbrains-mono.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*
+ * Fix: ASCII-Art / Directory Tree rendering
+ */
+.md-typeset pre,
+.md-typeset pre code,
+code,
+.highlight pre {
+    font-family: 'JetBrains Mono', Consolas, Monaco, 'Courier New', monospace !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0 !important;
+}
+
+.md-typeset pre {
+    white-space: pre !important;
+    overflow-x: auto !important;
+}
+/* =============================================================================
+   Clickable Links in Code Blocks
+   ============================================================================= */
+
+/* Link styling inside code blocks */
+.code-link {
+  color: #4fc3f7;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.code-link:hover {
+  color: #81d4fa;
+  text-decoration: none;
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] .code-link {
+  color: #4fc3f7;
+}
+
+[data-md-color-scheme="slate"] .code-link:hover {
+  color: #81d4fa;
+}
+
+/* Remove unnecessary scrollbars from pre elements */
+.md-typeset pre {
+    overflow-y: hidden !important;
+    max-height: none !important;
+    height: auto !important;
+}
+
+/* Ensure proper box sizing */
+.md-typeset pre {
+    box-sizing: border-box;
+    padding: 1.2em 1.4em;
+    margin: 0 0 1.6em;
+}
+
+/* Terminal menu specific styling */
+.terminal-menu {
+    background-color: var(--md-code-bg-color, #f8f8f8) !important;
+    border: 1px solid var(--md-default-fg-color--lightest, #ddd) !important;
+    padding: 1.2em 1.4em !important;
+    margin: 0 0 1.6em !important;
+    font-family: 'JetBrains Mono', Consolas, Monaco, 'Courier New', monospace !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0 !important;
+    white-space: pre !important;
+    overflow: hidden !important;
+}
+
+/* Dark mode */
+[data-md-color-scheme="slate"] .terminal-menu {
+    background-color: var(--md-code-bg-color, #2f2f2f) !important;
+    border: 1px solid var(--md-default-fg-color--lightest, #444) !important;
+}
+
+/* =============================================================================
+   Menu Option Styling - Matches graphical menu
+   ============================================================================= */
+
+.menu-option {
+    color: var(--md-primary-fg-color); /* #FF8000 - Bitcoin Orange */
+    font-weight: normal; /* Normal weight, not bold - matches terminal menu */
+}
+
+/* Entfernt das automatisch eingefügte Material-Icon (das blaue Symbol) */
+.md-typeset details summary::before {
+    display: none !important;
+}
+
+/* Entfernt den Standard-Browser-Pfeil (falls dieser ebenfalls stört) */
+.md-typeset details summary::-webkit-details-marker {
+    display: none !important;
+}
+.md-typeset details summary {
+    list-style: none !important;
+}
+
+/* Korrigiert den Abstand nach links, da das Icon nun fehlt. 
+   Ohne dies wäre links eine unschöne, leere Lücke. */
+.md-typeset details summary {
+    padding-left: 0.8rem !important;
+}
+
+/* ==========================================================================
+   Custom Styling for HTML <details> Elements
+   Color Scheme: Bitcoin Orange (#FF8000)
+   ========================================================================== */
+
+/* Remove the automatically injected Material Theme icon (blue symbol) */
+.md-typeset details summary::before {
+    display: none !important;
+}
+
+/* Remove the default browser arrow/marker for cross-browser consistency */
+.md-typeset details summary::-webkit-details-marker {
+    display: none !important;
+}
+.md-typeset details summary {
+    list-style: none !important;
+}
+
+/* Fix left padding: Since the icon was removed, reduce the left gap.
+   Adjust the 0.8rem value to match your preferred indentation. */
+.md-typeset details summary {
+    padding-left: 0.8rem !important;
+}
+
+/* Set the border color of the entire details block to primary color */
+.md-typeset details {
+    border-color: var(--md-primary-fg-color) !important;
+}
+
+/* Set a subtle semi-transparent orange background for the summary header */
+.md-typeset details summary {
+    background-color: rgba(255, 128, 0, 0.1) !important;
+}
+
+/* Hover state: Darker background and orange text color for interaction feedback */
+.md-typeset details summary:hover {
+    background-color: rgba(255, 128, 0, 0.2) !important;
+    color: var(--md-primary-fg-color) !important;
+}
+
+/* Focus state: Visible outline for accessibility and keyboard navigation */
+.md-typeset details summary:focus {
+    outline: 0px solid var(--md-primary-fg-color) !important;
+    outline-offset: -2px;
+}
