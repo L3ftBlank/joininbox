@@ -177,7 +177,7 @@ This section contains all tools to manage your Bitcoin wallet securely. View bal
 ┌────────────Wallet management options─────────────┐
 │ ┌──────────────────────────────────────────────┐ │
 │ │<a href="#ws">DISPLAY</a>     Show the contents of all mixdepths│ │
-│ │<a href="../labels/">LABEL</a>       Add or edit a label to an address │ │
+│ │<a href="#ws">LABEL</a>       Add or edit a label to an address │ │
 │ │<a href="#ws">UTXOS</a>       Show all the coins in the wallet  │ │
 │ │<a href="#ws">HISTORY</a>     Show all past transactions        │ │
 │ │<a href="#ws">XPUBS</a>       Show the master public keys       │ │
